@@ -2,6 +2,8 @@
 <html>
 <head>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
 	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>To do list</title>
@@ -17,24 +19,26 @@
 	}
 	.class_1
 	{
+
 		margin: 15px;
 		border-spacing:10px;
-		padding-left: 12px;
+		padding: 15px;
 		color: black;
-		font-family: cursive;
+		font-family: Raleway;
 		background-color: #eee;
 		padding-bottom: 10px;
+		box-shadow: 0 0 5px black; 
 	}
 	a
 	{
 		text-decoration: none;
 		color: gray;
+		font-family: Oswald;
 		padding: 5px;
 	}
-	label
+	#edit_btn
 	{
-		margin-top: 30px;
-		padding-left: 5px;
+		margin-top:12px;
 	}
 	header
 	{
@@ -79,7 +83,7 @@
 
 	<center>
 		<section>
-		<input id="inputId" type="text" name="">
+		<input id="inputId" type="text" name="" placeholder="enter task">
 		<input id="btnInput" type="button" name="" value="Add task">
 	</section>
 	</center>
@@ -95,8 +99,8 @@
 <script type="text/javascript">
 		$("#btnInput").on("click",function(e){
 		var x = document.querySelector("#inputId").value;
-		var ele = $('#left').append("<div class='class_1'/>"+"<label>"+x+"</label>"+"</br>"+""+
-			"<a href='#' onclick='removeThis()'>remove</a>"+"<input type='button' href='#' value='edit' onclick='editThis()'>"
+		var ele = $('#left').append("<div class='class_1'/>"+"<input type='checkbox'/>"+"<label>"+x+"</label>"+"</br>"+""+
+			"<a href='#' onclick='removeThis()'>remove</a>"+"<input type='button' id='edit_btn' href='#' value='Edit' onclick='editThis()'>"
 			+"<button id='moveBtn' onclick='moveThis()'>Done</button>"+"</div>");
 		console.log("Entered vale: ",x);
 		});
@@ -108,10 +112,23 @@
 		   console.log(clicked);
 		   $('#right').append(clicked);
 		});
+		$("#right button").click( function()
+		{
+		   var clicked = $(this).parent();
+		   console.log(clicked);
+		   $('#left').append(clicked);
+		});
+
 	}
+
 	function removeThis()
 	{
 		$("#left a").click( function()
+		{
+		   var clicked = $(this);
+		   clicked.parent().remove();
+		});
+		$("#right a").click( function()
 		{
 		   var clicked = $(this);
 		   clicked.parent().remove();
